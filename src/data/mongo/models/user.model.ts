@@ -5,9 +5,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Name is required"],
   },
+  email:{
+    type: String,
+    required: [true, 'Email is required'],
+    unique: true,
+  },
   role: {
     type: [String],
-    default: ["WORKER_ROLE"],
     enum: ["ADMIN_ROLE", "WORKER_ROLE"],
   },
   password: {
@@ -21,7 +25,7 @@ const userSchema = new mongoose.Schema({
   room: {
     type: Schema.Types.ObjectId,
     ref: "Room",
-    required: true,
+    required: false, //todo: cambiar luego
   },
 });
 
