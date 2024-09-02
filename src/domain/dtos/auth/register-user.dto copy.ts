@@ -5,7 +5,7 @@ export class RegisterUserDto {
     public name: string,
     public email: string,
     public password: string,
-    public room: number, //todo ya no ingresa por el dto
+    public room: number,
     public role: number
   ) {}
 
