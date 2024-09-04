@@ -11,7 +11,7 @@ export class UserEntity {
     public room?: string
   ) {}
 
-  static fromObjet(object: { [key: string]: any }) {
+  static fromObject(object: { [key: string]: any }) {
     const { id, name, email, role, password, state, room } = object;
 
     if (!id) throw CustomError.badRequest("Missing id");

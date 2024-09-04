@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   },
   state: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   room: {
     type: Schema.Types.ObjectId,

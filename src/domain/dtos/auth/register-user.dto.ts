@@ -5,7 +5,6 @@ export class RegisterUserDto {
     public name: string,
     public email: string,
     public password: string,
-    public room: number, //todo ya no ingresa por el dto
     public role: number
   ) {}
 
@@ -19,9 +18,6 @@ export class RegisterUserDto {
     if (password.length < 6) return ["Password too short"];
     if (role === undefined || role === null || typeof role !== "number")
       return ["Missing role"];
-    // if (room === undefined || room === null || typeof room !== "number")
-     //return ["Missing room"];
-
-    return [undefined, new RegisterUserDto(name, email, password, room, role)];
+    return [undefined, new RegisterUserDto(name, email, password, room)];
   }
 }

@@ -1,18 +1,35 @@
 import mongoose, { Schema } from "mongoose";
 
+enum States{
+  PENDING = 0,
+  INPROGRESS = 1,
+  COMPLETED = 2
+}
+
 const todoSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, "Title is required"],
   },
   state: {
-    type: Boolean,
-    default: false,
+    type: Number,
+    required: false,
+    default: States.PENDING
   },
-  user: {
+  isActive: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
+  assignedUser: {
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true,
+  },
+  creatorUser: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: false,
   },
   room: {
     type: Schema.Types.ObjectId,

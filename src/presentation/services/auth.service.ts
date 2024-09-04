@@ -22,7 +22,7 @@ export class AuthService {
       user.password = bcryptAdapter.hash(registerUserDto.password);
       await user.save();
 
-      const { password, ...userEntity } = UserEntity.fromObjet(user);
+      const { password, ...userEntity } = UserEntity.fromObject(user);
       const token = await JwtAdapter.generateToken({ id: user.id });
       if (!token) throw CustomError.internalServer("Error while creating JWT");
 
@@ -45,7 +45,7 @@ export class AuthService {
     );
     if (!isMatching) throw CustomError.badRequest("Password is not valid");
 
-    const { password, ...userEntity } = UserEntity.fromObjet(user);
+    const { password, ...userEntity } = UserEntity.fromObject(user);
     const token = await JwtAdapter.generateToken({ id: user.id });
     if (!token) throw CustomError.internalServer("Error while creating JWT");
 
