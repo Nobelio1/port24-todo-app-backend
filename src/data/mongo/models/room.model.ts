@@ -1,20 +1,20 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const roomSchema = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
     required: [true, "Name is required"],
   },
-  users: [
-    {
-      type: String,
-    },
-  ],
-  todos: [
-    {
-      type: String,
-    },
-  ],
+  isActive: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
+  creatorUser: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
 });
 
 roomSchema.set("toJSON", {
@@ -25,4 +25,4 @@ roomSchema.set("toJSON", {
   },
 });
 
-export const RoomSchema = mongoose.model("Room", roomSchema);
+export const RoomModel = mongoose.model("Room", roomSchema);

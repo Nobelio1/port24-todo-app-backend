@@ -11,9 +11,9 @@ export class TodoRoutes {
     const controller = new TodoController(todoService)
 
     router.post('/create',[AuthMiddleware.validateJWT],controller.createTodo)
-    router.post('/edit',controller.editTodo)
+    router.put('/edit/:id',controller.editTodo)
     router.delete('/delete/:id',controller.deleteTodo)
-    router.get('/todosByUser/:id',controller.getTodosByUser)
+    router.get('/todosByUser/:id/:room',controller.getTodosByUserAndRoom)
     router.get('/todos',[AuthMiddleware.validateJWT],controller.getAllTodos)
 
     return router

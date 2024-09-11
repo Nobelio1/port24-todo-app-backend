@@ -24,28 +24,29 @@ export class TodoController {
   }
 
   editTodo = (req: Request, res: Response) => {
+    const {id} = req.params
     const [error, editTodoDto] = EditTodoDto.create(req.body)
     if(error) return res.status(400).json({error})
     
-    this.todoService.editTodo(editTodoDto!)
+    this.todoService.editTodo(editTodoDto!, id)
       .then(todo => res.json(todo))
       .catch(error => this.handleError(error, res))
   }
 
   deleteTodo = (req: Request, res: Response) => {
-    const {idTodo} = req.body //todo --> traer desde parametros
-    if( isNaN(idTodo) || !idTodo ) return res.status(400).json({error: 'idTodo is invalid'})
+    const {id} = req.params 
+    if( !id ) return res.status(400).json({error: 'idTodo is invalid'})
 
-    this.todoService.deleteTodo(idTodo)
+    this.todoService.deleteTodo(id)
       .then(todo => res.json(todo))
       .catch(error => this.handleError(error,res))
   }
 
-  getTodosByUser = (req: Request, res: Response) => {
-    const {idUser} = req.body //todo --> traer desde parametros
-    if( isNaN(idUser) || !idUser ) return res.status(400).json({error: 'idTodo is invalid'})
+  getTodosByUserAndRoom = (req: Request, res: Response) => {
+    const {id, room} = req.params 
+    if( !id || !room ) return res.status(400).json({error: 'idTodo is invalid'})
     
-    this.todoService.getTodosByUser(idUser)
+    this.todoService.getTodosByUser(id, room)
       .then(todo => res.json(todo))
       .catch(error => this.handleError(error, res))
   }

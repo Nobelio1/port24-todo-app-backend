@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-enum States{
+export enum States{
   PENDING = 0,
   INPROGRESS = 1,
   COMPLETED = 2
